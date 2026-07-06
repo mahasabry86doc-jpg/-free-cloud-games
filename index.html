@@ -1052,6 +1052,7 @@ Popular Games
 <i class="fas fa-layer-group"></i>
 Browse Categories
 </h2>
+   
 
 <div class="categories">
 
@@ -1078,6 +1079,15 @@ Strategy
 <button class="category" onclick="filterGames('Horror', this)">
 Horror
 </button>
+     <!-- LOGIN MODAL -->
+
+<div id="loginModal" class="modal">
+
+<div class="modal-box">
+    <div id="loginModal" class="modal">
+...
+</div>
+
 
 </div>
 
@@ -1145,7 +1155,6 @@ function renderGames(list){
     list.forEach((game,index)=>{
 
         grid.innerHTML += `
-
         <div class="game-card">
 
             <div class="favorite">
@@ -1165,7 +1174,6 @@ function renderGames(list){
                 </div>
 
                 <div class="game-meta">
-
                     <span>
                         <i class="fas fa-users"></i>
                         ${game.players}
@@ -1174,7 +1182,6 @@ function renderGames(list){
                     <span>
                         ⭐ ${game.rating}
                     </span>
-
                 </div>
 
                 <button class="play-btn" onclick="playGame(${index})">
@@ -1185,7 +1192,6 @@ function renderGames(list){
             </div>
 
         </div>
-
         `;
 
     });
@@ -1205,7 +1211,7 @@ game.category.toLowerCase().includes(q)
 
 );
 
-renderGames(filtered);
+
 
 });
         function filterGames(category, button){
@@ -1223,12 +1229,11 @@ renderGames(filtered);
 
     const filtered = games.filter(game=>game.category===category);
 
-    renderGames(filtered);
+ const filtered = games.filter(game => game.category === category);
+
+
 
 }
-
-renderGames(filtered);
-
 }
      function playGame(index){
 
@@ -1356,6 +1361,32 @@ btn.innerHTML='<i class="fas fa-user-check"></i> '+user;
 }
 
 updateLoginButton();
+     function filterGames(category, button){
+
+    document.querySelectorAll(".category").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    if(category==="All"){
+        renderGames(games);
+        return;
+    }
+
+    const filtered = games.filter(game=>game.category===category);
+
+    renderGames(filtered);
+
+}
+
+function playGame(index){
+
+    const game = games[index];
+
+    alert("Launching " + game.title);
+
+}
 
 </script>
     </body>
